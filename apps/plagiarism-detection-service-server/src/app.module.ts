@@ -1,7 +1,11 @@
 import { Module } from "@nestjs/common";
+import { AnalysisModuleModule } from "./AnalysisModule/analysismodule.module";
+import { DocumentModuleModule } from "./DocumentModule/documentmodule.module";
+import { ResultModuleModule } from "./ResultModule/resultmodule.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
+import { KafkaModule } from "./kafka/kafka.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { ServeStaticOptionsService } from "./serveStaticOptions.service";
 import { ConfigModule, ConfigService } from "@nestjs/config";
@@ -11,6 +15,10 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 @Module({
   controllers: [],
   imports: [
+    KafkaModule,
+    AnalysisModuleModule,
+    DocumentModuleModule,
+    ResultModuleModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
